@@ -1,5 +1,7 @@
 package projeto.spring.data.projeto.spring.data;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
@@ -82,5 +84,16 @@ public class SpringDataTest {
 		Optional<UsuarioSpringData> usuario = interfaceSpringDataUser.findById(52L);
 
 		interfaceSpringDataUser.delete(usuario.get());
+	}
+
+	@Test
+	public void testeConsultaNome() {
+
+		List<UsuarioSpringData> usuario = interfaceSpringDataUser.buscarPorNome("Thiago");
+
+		for (UsuarioSpringData u : usuario) {
+			System.out.println("Consulta por nome --> " + u);
+			System.out.println("--------------------------------------------------------");
+		}
 	}
 }
