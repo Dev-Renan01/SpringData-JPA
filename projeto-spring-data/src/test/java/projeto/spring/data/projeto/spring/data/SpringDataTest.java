@@ -96,4 +96,23 @@ public class SpringDataTest {
 			System.out.println("--------------------------------------------------------");
 		}
 	}
+	
+	
+	@Test
+	public void testeConsultarNomeParam() {
+		
+		UsuarioSpringData usuario = interfaceSpringDataUser.buscarPorNomeParam("Thiago Renn");
+		
+		System.out.println(usuario);
+	}
+	
+	
+	@Test
+	public void testeDeletarNome() {
+		
+		interfaceSpringDataUser.deletarPorNome("Thiago Renn");
+		
+		System.out.println("Usuário deletado com sucesso");
+	}
 }
+
