@@ -4,6 +4,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class UsuarioSpringData {
@@ -17,6 +18,8 @@ public class UsuarioSpringData {
 	private String nome;
 	private String email;
 	private int idade;
+
+	
 	public Long getId() {
 		return id;
 	}

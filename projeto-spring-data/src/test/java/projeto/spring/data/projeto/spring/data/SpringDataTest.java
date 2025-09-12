@@ -1,6 +1,6 @@
 package projeto.spring.data.projeto.spring.data;
 
-import java.util.ArrayList;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -11,6 +11,8 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import dao.InterfaceSpringDataUser;
+import dao.InterfaceTelefone;
+import model.Telefone;
 import model.UsuarioSpringData;
 
 @ExtendWith(SpringExtension.class) // Integra os testes JUnit 5 com o Spring
@@ -20,16 +22,19 @@ public class SpringDataTest {
 
 	@Autowired
 	private InterfaceSpringDataUser interfaceSpringDataUser;
+	
+	@Autowired
+	private InterfaceTelefone interfaceTelefone;
 
 	@Test
 	public void testeInsert() {
 
 		UsuarioSpringData usuario = new UsuarioSpringData();
 
-		usuario.setEmail("susu@gmail.com 2");
+		usuario.setEmail("regis@gmail.com 2");
 		usuario.setIdade(20);
-		usuario.setLogin("suany 2");
-		usuario.setNome("suany 2");
+		usuario.setLogin("regis");
+		usuario.setNome("Regis");
 		usuario.setSenha("2222");
 
 		interfaceSpringDataUser.save(usuario);
@@ -113,6 +118,25 @@ public class SpringDataTest {
 		interfaceSpringDataUser.deletarPorNome("Thiago Renn");
 		
 		System.out.println("Usuário deletado com sucesso");
+	}
+	
+	//------------------------------------------------------
+	
+	@Test
+	public void insertTelefone() {
+		
+		Optional <UsuarioSpringData> usuario = interfaceSpringDataUser.findById(2L);
+		
+		Telefone telefone = new Telefone();	
+		
+		telefone.setNumero("81 9123457899");
+		telefone.setTipo("Celular");
+		telefone.setUsuarioSpringData(usuario.get());
+		
+		interfaceTelefone.save(telefone);
+		
+		System.out.println("Telefone: " + telefone.getNumero() + ", atribuido ao usuário -> " + usuario.get().getNome());
+
 	}
 }
 
